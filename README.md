@@ -21,5 +21,14 @@ Our research scope:
 * which layer stores compositionality information best
 * check if compositionality information is in the norm (magnitude) since cosine similarity ignores the information stored in the vector norm.
 
-Results potentially could verify findings of Klubicka, Kelleher (2022).
+Results potentially could verify findings of Klubicka, Kelleher (2022) if nothing else new is found
+
+## Datatset
+Possible options:
+* NCTTI
+* COMPS
+* Compositionality of Nominal Compounds - Datasets https://pageperso.lis-lab.fr/carlos.ramisch/?page=downloads/compounds
+
+
+
 
