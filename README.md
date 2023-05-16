@@ -29,6 +29,6 @@ Possible options:
 * COMPS
 * Compositionality of Nominal Compounds - Datasets https://pageperso.lis-lab.fr/carlos.ramisch/?page=downloads/compounds
 
-ASK ALINE ABOUT HUMAN EVALUATIONS/ORIGINAL ANNOTATOR RESULTS - WHAT EACH ANNOTATOR ACTUALLY SAID
+ASK ALINE ABOUT HUMAN EVALUATIONS/ORIGINAL ANNOTATOR RESULTS - WHAT EACH ANNOTATOR ACTUALLY SAID (nice to have in addition to average annotator performance).
 
 
