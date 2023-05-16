@@ -21,7 +21,9 @@ Current literature shows that BERT knows compositionality of compound semantics.
 Our research scope:
 * which layer stores compositionality information best
 * check if compositionality information is in the norm (magnitude) since cosine similarity ignores the information stored in the vector norm.
-We are measuring difference in distance of vectors
+We are measuring difference in distance of vectors which has been proven to be helpful for taxonomic stuff but not noun compounds.
+
+Compare head modifiers to see if there is a taxonomical relationship.
 
 Results potentially could verify findings of Klubicka, Kelleher (2022) if nothing else new is found
 
