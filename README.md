@@ -19,6 +19,7 @@ Current literature shows that BERT knows compositionality of compound semantics.
 
 Our research scope:
 * which layer stores compositionality information best
-* check if compositionality information is in the norm (magnitude) since cosine similarity nullifies information stored in the vector norm.
+* check if compositionality information is in the norm (magnitude) since cosine similarity ignores the information stored in the vector norm.
 
 Results potentially could verify findings of Klubicka, Kelleher (2022).
+
