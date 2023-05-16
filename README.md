@@ -1,6 +1,7 @@
 # Compositionality
 Repo for compositionality scale project
 
+See NOTES here: https://docs.google.com/document/d/1HdaP62N9srEGwFOJUDZxRy9jVBl0sFvz_BaxQGi-uRY/edit
 # 20230511
 To do:\
 Play around with different LMs.
