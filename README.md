@@ -36,3 +36,6 @@ Possible options:
 ASK ALINE ABOUT HUMAN EVALUATIONS/ORIGINAL ANNOTATOR RESULTS - WHAT EACH ANNOTATOR ACTUALLY SAID (nice to have in addition to average annotator performance).
 
 
+# 20230531
+Ask Aline about access to ENCOW (Schaefer, 2014) data.
+
