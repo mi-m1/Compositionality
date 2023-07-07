@@ -1,6 +1,7 @@
 temp.py
 in_ncs/
 out_compos_bert/
+.idea/
 final.pkl
 out.pkl
 eval.pkl

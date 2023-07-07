@@ -6,6 +6,8 @@ import os
 import pandas as pd
 import re
 import string
+from torch.linalg import vector_norm
+
 
 from collections import defaultdict
 from bert_utils import *
@@ -33,15 +35,9 @@ def read_examples(target, directory=''):
     return examples
 
 
-def cosine(x, y, distance=False):
-    """Computes cosine similarity or distance for two tensors."""
-    
-    cosine = torch.nn.CosineSimilarity(dim=0)
-    out = cosine(x, y).item()
-    if distance:
-        out = 1 - out
-
-    return out
+def magnitude(x, y, order=1):
+    """Computes differnce in magnitude for two tensors."""
+    return (vector_norm(x, order) - vector_norm(y, order)).item()
 
 
 def get_layer_combos(min_layer=1, max_layer=12, how='win', custom_layers=None):
@@ -472,7 +468,7 @@ def main():
                                         for i in range(len(emb1)):
 
                                             # compute token-level cosines
-                                            cos = cosine(emb1[i], emb2[i])
+                                            cos = magnitude(emb1[i], emb2[i])
                                             token_dists.append(cos)
 
                                             # prepare for type-level distances
@@ -490,7 +486,7 @@ def main():
                                         dists['type'] = f'type-{typelevel_pooling}'
                                         type_emb1 = apply_pooling(all_emb1, pooling=typelevel_pooling)
                                         type_emb2 = apply_pooling(all_emb2, pooling=typelevel_pooling)
-                                        dists['value'] = cosine(type_emb1, type_emb2)
+                                        dists['value'] = magnitude(type_emb1, type_emb2)
                                         master_dists.append(dists)
 
         df = pd.DataFrame(master_dists)
