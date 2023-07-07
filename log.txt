@@ -1,0 +1,65 @@
+Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertModel: ['cls.predictions.transform.LayerNorm.weight', 'cls.predictions.bias', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.dense.weight', 'cls.seq_relationship.weight', 'cls.seq_relationship.bias', 'cls.predictions.decoder.weight']
+- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+2023-06-08 12:58:22,882 - INFO - Loaded 0 targets from ./in_ncs.
+2023-06-08 12:58:22,882 - INFO - Output directory: ./out_compos_bert.
+2023-06-08 12:58:22,883 - INFO - Number of layer combinations: 91.
+2023-06-08 12:58:22,883 - INFO - Token pooling methods: avg, sum.
+2023-06-08 12:58:22,883 - INFO - Layer pooling methods: avg, sum.
+2023-06-08 12:58:22,883 - INFO - Type-level methods: avg, sum.
+2023-06-08 12:58:22,883 - INFO - Same pooling for token, layer, and type-level: yes.
+2023-06-08 12:58:22,883 - INFO - Preprocessing filters: none.
+2023-06-08 12:58:22,883 - INFO - Minimum sequence lengths: 3, 20.
+2023-06-08 12:58:22,883 - INFO - Number of modeled sequences: 10.
+2023-06-08 12:58:22,883 - INFO - Shuffle sequences before processing: False.
+2023-06-08 12:58:22,883 - INFO - Skipping "car park".
+2023-06-08 12:58:22,883 - INFO - Skipping "head hunter".
+2023-06-08 12:58:23,843 - INFO - Processing direct estimates from 1 directories.
+Traceback (most recent call last):
+  File "/Users/meredithannagibbons/Documents/PhD/BERT-Compounds-EACL23/compos_estimates.py", line 144, in <module>
+    main()
+  File "/Users/meredithannagibbons/Documents/PhD/BERT-Compounds-EACL23/compos_estimates.py", line 134, in main
+    master_df = process_direct_estimates(in_dirs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/meredithannagibbons/Documents/PhD/BERT-Compounds-EACL23/compos_estimates.py", line 60, in process_direct_estimates
+    assert master_df.shape[0] == df.shape[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+2023-06-08 12:58:28,711 - INFO - Evaluating compositionality estimates: estimates.pkl
+2023-06-08 12:58:28,711 - INFO - Gold standard data: gold.pkl
+Traceback (most recent call last):
+  File "/Users/meredithannagibbons/Documents/PhD/BERT-Compounds-EACL23/eval.py", line 49, in <module>
+    main()
+  File "/Users/meredithannagibbons/Documents/PhD/BERT-Compounds-EACL23/eval.py", line 28, in main
+    master_df = pd.read_pickle(in_file)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/meredithannagibbons/Documents/PhD/BERT-Compounds-EACL23/venv/lib/python3.11/site-packages/pandas/io/pickle.py", line 179, in read_pickle
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/Users/meredithannagibbons/Documents/PhD/BERT-Compounds-EACL23/venv/lib/python3.11/site-packages/pandas/io/common.py", line 868, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'estimates.pkl'
+Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertModel: ['cls.predictions.transform.dense.weight', 'cls.predictions.decoder.weight', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.seq_relationship.weight', 'cls.seq_relationship.bias', 'cls.predictions.bias']
+- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+2023-07-06 17:30:28,702 - INFO - Loaded 0 targets from ./in_ncs.
+2023-07-06 17:30:28,702 - INFO - Output directory: ./out_compos_bert.
+2023-07-06 17:30:28,702 - INFO - Number of layer combinations: 91.
+2023-07-06 17:30:28,702 - INFO - Token pooling methods: avg, sum.
+2023-07-06 17:30:28,702 - INFO - Layer pooling methods: avg, sum.
+2023-07-06 17:30:28,702 - INFO - Type-level methods: avg, sum.
+2023-07-06 17:30:28,702 - INFO - Same pooling for token, layer, and type-level: yes.
+2023-07-06 17:30:28,703 - INFO - Preprocessing filters: none.
+2023-07-06 17:30:28,703 - INFO - Minimum sequence lengths: 3, 20.
+2023-07-06 17:30:28,703 - INFO - Number of modeled sequences: 10.
+2023-07-06 17:30:28,703 - INFO - Shuffle sequences before processing: False.
+2023-07-06 17:30:28,703 - INFO - Skipping "car park".
+2023-07-06 17:30:28,703 - INFO - Skipping "head hunter".
+2023-07-06 17:30:30,750 - INFO - Processing direct estimates from 1 directories.
+2023-07-06 17:30:35,376 - INFO - Processed direct estimates: ./out_compos_bert
+2023-07-06 17:30:35,407 - INFO - Computing composite estimates.
+2023-07-06 17:32:02,305 - INFO - Output written: estimates.pkl
+2023-07-06 17:32:03,509 - INFO - Evaluating compositionality estimates: estimates.pkl
+2023-07-06 17:32:03,509 - INFO - Gold standard data: gold.pkl
+2023-07-06 17:33:58,781 - INFO - Correlations dataframe written: eval.pkl
