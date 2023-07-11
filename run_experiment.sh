@@ -5,7 +5,8 @@ dir_examples=./in_ncs
 dir_bert_estimates=./out_compos_bert
 df_estimates=estimates.pkl
 df_eval=eval.pkl
-df_gold=gold.pkl
+#df_gold=gold.pkl         # this contains all rows
+df_gold=gold_test.pkl     # only contains car park and head hunter (the test instances)
 log_file=log.txt
 
 # Model corpus examples

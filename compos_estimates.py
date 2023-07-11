@@ -2,6 +2,7 @@ import argparse
 import logging
 import os
 import pandas as pd
+import numpy as np
 
 
 def process_direct_estimates(directories, collapse_pooling=True):
@@ -17,7 +18,7 @@ def process_direct_estimates(directories, collapse_pooling=True):
     Returns:
         Dataframe with direct estimates for all compounds.
     """
-    
+
     master_dfs = []
 
     for directory in directories:
@@ -37,11 +38,11 @@ def process_direct_estimates(directories, collapse_pooling=True):
             if collapse_pooling:
                 # Clean up column names
                 df['type'] = df['type'].map({'token': 'token',
-                                             'type-avg': 'type', 
+                                             'type-avg': 'type',
                                              'type-sum': 'type'})
 
             # Merge combo columns into single string
-            config_cols = ['layer_combo', 'layer_pooling', 
+            config_cols = ['layer_combo', 'layer_pooling',
                            'min_seq_len', 'n_seqs', 'emb1', 'emb2', 'type']
 
             joiner = lambda x: '_'.join(x.astype(str))
@@ -72,11 +73,26 @@ def process_direct_estimates(directories, collapse_pooling=True):
 
         master_dfs.append(master_df)
         logging.info(f'Processed direct estimates: {directory}')
-        
+
     master_df = pd.concat(master_dfs)
     print(master_df.info())
     print(master_df.head(6))
     return master_df
+
+
+def compos_add(dfs):
+    # the [0] discards duplicate rows
+    return (dfs[0].values + dfs[1].values)[0]
+
+
+def compos_mult(dfs):
+    # the [0] discards duplicate rows
+    return np.multiply(dfs[0].values, dfs[1].values)[0]
+
+
+def compos_comb(dfs):
+    # the [0] discards duplicate rows
+    return ((dfs[0].values + dfs[1].values) + np.multiply(dfs[0].values, dfs[1].values))[0]
 
 
 def get_composite_estimates(master_df):
@@ -88,20 +104,22 @@ def get_composite_estimates(master_df):
     Returns:
         Dataframe with all direct + composite estimates.
     """
-    
+
     # Extract core parameter combinations (without pairs of embedding types)
     core_combos = master_df.index.to_list()
     core_combos = [c.split('_') for c in core_combos]
     core_combos = ['_'.join(c[:4] + c[-1:]) for c in core_combos]
     core_combos = list(set(core_combos))
-    
-    # Compute composite estimates
-    others = ['mwe', 'context', 'cls'] # values to combine with head/modif
 
-    # todo rewrite for magnitude
-    funcs = {'add': lambda x: x[0] + x[1],
-             'mult': lambda x: x[0] * x[1],
-             'comb': lambda x: (x[0] + x[1]) + (x[0] * x[1])}
+    # Compute composite estimates
+    others = ['mwe', 'context', 'cls']  # values to combine with head/modif
+
+    # funcs = {'add': lambda x: x[0] + x[1],
+    #          'mult': lambda x: x[0] * x[1],
+    #          'comb': lambda x: (x[0] + x[1]) + (x[0] * x[1])}
+    funcs = {'add': lambda x: compos_add(x),
+             'mult': lambda x: compos_mult(x),
+             'comb': lambda x: compos_comb(x)}
 
     for i, core_combo in enumerate(core_combos):
         core_combo = core_combo.split('_')
@@ -114,45 +132,43 @@ def get_composite_estimates(master_df):
             head_score = '_'.join(head_score)
             modif_score = '_'.join(modif_score)
 
-            target_rows = (master_df.loc[head_score], 
+            target_rows = (master_df.loc[head_score],
                            master_df.loc[modif_score])
 
             for func in funcs:
                 new_combo = core_combo[:4] + [f'{other}_{func}'] + core_combo[-1:]
                 new_combo = '_'.join(new_combo)
 
-                new_row = funcs[func](target_rows).drop_duplicates()
-                assert len(new_row) == 1
-
-                master_df.loc[new_combo] = new_row.iloc[0]
-                
+                new_row = funcs[func](target_rows)
+                master_df.loc[new_combo] = new_row
     return master_df
 
 
 def main():
-
     parser = argparse.ArgumentParser()
     parser.add_argument('in_dirs', help='one or more directories containing '
-                        'files output by compos_bert.py', nargs='+')
+                                        'files output by compos_bert.py', nargs='+')
     parser.add_argument('out_file', help='path where to write output pickle')
 
     args = parser.parse_args()
-    
+
     in_dirs = args.in_dirs
     out_file = args.out_file
-    
+
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s',
                         level=logging.INFO)
-    
+
     logging.info(f'Processing direct estimates from {len(in_dirs)} directories.')
     master_df = process_direct_estimates(in_dirs)
-    
+
+    print(master_df.isna().sum())
+
     logging.info('Computing composite estimates.')
     master_df = get_composite_estimates(master_df)
-    
+
     master_df.to_pickle(out_file)
     logging.info(f'Output written: {out_file}')
-    
+
 
 if __name__ == '__main__':
     main()

@@ -63,3 +63,29 @@ Some weights of the model checkpoint at bert-base-uncased were not used when ini
 2023-07-06 17:32:03,509 - INFO - Evaluating compositionality estimates: estimates.pkl
 2023-07-06 17:32:03,509 - INFO - Gold standard data: gold.pkl
 2023-07-06 17:33:58,781 - INFO - Correlations dataframe written: eval.pkl
+2023-07-07 20:48:39,341 - INFO - Processing direct estimates from 1 directories.
+2023-07-07 20:48:43,832 - INFO - Processed direct estimates: ./out_compos_bert
+2023-07-07 20:48:43,853 - INFO - Computing composite estimates.
+2023-07-07 20:49:58,156 - INFO - Output written: estimates.pkl
+2023-07-07 20:49:58,619 - INFO - Evaluating compositionality estimates: estimates.pkl
+2023-07-07 20:49:58,619 - INFO - Gold standard data: gold.pkl
+2023-07-07 20:51:39,013 - INFO - Correlations dataframe written: eval.pkl
+Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertModel: ['cls.predictions.transform.dense.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.bias', 'cls.seq_relationship.bias', 'cls.seq_relationship.weight', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.decoder.weight', 'cls.predictions.transform.dense.weight']
+- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+2023-07-11 16:53:18,079 - INFO - Loaded 0 targets from ./in_ncs.
+2023-07-11 16:53:18,079 - INFO - Output directory: ./out_compos_bert.
+2023-07-11 16:53:18,079 - INFO - Number of layer combinations: 91.
+2023-07-11 16:53:18,079 - INFO - Token pooling methods: avg, sum.
+2023-07-11 16:53:18,079 - INFO - Layer pooling methods: avg, sum.
+2023-07-11 16:53:18,080 - INFO - Type-level methods: avg, sum.
+2023-07-11 16:53:18,080 - INFO - Same pooling for token, layer, and type-level: yes.
+2023-07-11 16:53:18,080 - INFO - Preprocessing filters: none.
+2023-07-11 16:53:18,080 - INFO - Minimum sequence lengths: 3, 20.
+2023-07-11 16:53:18,080 - INFO - Number of modeled sequences: 10.
+2023-07-11 16:53:18,080 - INFO - Shuffle sequences before processing: False.
+2023-07-11 16:53:18,080 - INFO - Skipping "car park".
+2023-07-11 16:53:18,080 - INFO - Skipping "head hunter".
+2023-07-11 16:53:19,956 - INFO - Processing direct estimates from 1 directories.
+2023-07-11 16:53:25,719 - INFO - Processed direct estimates: ./out_compos_bert
+2023-07-11 16:53:25,733 - INFO - Computing composite estimates.
