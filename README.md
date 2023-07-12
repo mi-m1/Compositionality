@@ -40,8 +40,8 @@ ASK ALINE ABOUT HUMAN EVALUATIONS/ORIGINAL ANNOTATOR RESULTS - WHAT EACH ANNOTAT
 Ask Aline about access to ENCOW (Schaefer, 2014) data. - Done
 
 
-#20230712
-
+# 20230712
+ 
 Todo list:
 
 Merry: look into duplicate row id issue
