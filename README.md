@@ -45,6 +45,7 @@ Ask Aline about access to ENCOW (Schaefer, 2014) data. - Done
 Todo list:
 
 Merry: look into duplicate row id issue
+
 Maggie: familiarise self with code + scrape sentences with NC from available corpora. Then try different BERT-family models and multilingual ones.
 
 
